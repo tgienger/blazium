@@ -809,10 +809,8 @@ public abstract class DownloaderService extends CustomIntentService implements I
                                             // was delivered by Market or
                                             // through
                                             // another mechanism
-                                            StringBuffer logData = new StringBuffer("file ");
-                                            logData.append(di.mFileName);
-                                            logData.append(" found. Not downloading.");
-                                            Log.d(LOG_TAG, logData.toString());
+                                            Log.d(LOG_TAG, "file " + di.mFileName
+                                                    + " found. Not downloading.");
                                             di.mStatus = STATUS_SUCCESS;
                                             di.mTotalBytes = fileSize;
                                             di.mCurrentBytes = fileSize;
@@ -954,10 +952,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
         }
 
         if (Constants.LOGV) {
-            StringBuffer logData = new StringBuffer("scheduling retry in ");
-            logData.append(wakeUp);
-            logData.append("ms");
-            Log.v(Constants.TAG, logData.toString());
+            Log.v(Constants.TAG, "scheduling retry in " + wakeUp + "ms");
         }
 
         String className = getAlarmReceiverClassName();
@@ -1226,11 +1221,8 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * download
      */
     public String generateTempSaveFileName(String fileName) {
-        StringBuffer pathBuffer = new StringBuffer(Helpers.getSaveFilePath(this));
-        pathBuffer.append(File.separator);
-        pathBuffer.append(fileName);
-        pathBuffer.append(TEMP_EXT);
-        String path = pathBuffer.toString();
+        String path = Helpers.getSaveFilePath(this)
+                + File.separator + fileName + TEMP_EXT;
         return path;
     }
 
